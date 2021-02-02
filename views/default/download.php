@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model sjaakp\pluto\forms\PwChangeForm */
+/* @var $model wsidebottom\pluto\forms\PwChangeForm */
 /* @var $context yii\web\Controller */
 /* @var $form yii\widgets\ActiveForm */
 

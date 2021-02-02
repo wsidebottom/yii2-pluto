@@ -1,10 +1,10 @@
 <?php
 
-namespace sjaakp\pluto\models;
+namespace wsidebottom\pluto\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use sjaakp\pluto\models\User;
+use wsidebottom\pluto\models\User;
 
 /**
  */

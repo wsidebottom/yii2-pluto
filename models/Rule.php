@@ -1,6 +1,6 @@
 <?php
 
-namespace sjaakp\pluto\models;
+namespace wsidebottom\pluto\models;
 
 use Yii;
 use yii\base\Model;

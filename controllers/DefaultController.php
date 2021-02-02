@@ -7,22 +7,22 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
-namespace sjaakp\pluto\controllers;
+namespace wsidebottom\pluto\controllers;
 
 use Yii;
 use yii\base\InvalidCallException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
-use sjaakp\pluto\Module;
-use sjaakp\pluto\models\User;
-use sjaakp\pluto\forms\LoginForm;
-use sjaakp\pluto\forms\EmailForm;
-use sjaakp\pluto\forms\PwChangeForm;
+use wsidebottom\pluto\Module;
+use wsidebottom\pluto\models\User;
+use wsidebottom\pluto\forms\LoginForm;
+use wsidebottom\pluto\forms\EmailForm;
+use wsidebottom\pluto\forms\PwChangeForm;
 
 /**
  */

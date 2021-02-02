@@ -1,5 +1,5 @@
 {
-    "name": "sjaakp/yii2-pluto",
+    "name": "wsidebottom/yii2-pluto",
     "description": "User management extension for Yii2",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","user","login","access","rbac"],
@@ -7,7 +7,7 @@
     "authors": [
         {
             "name": "Sjaak Priester",
-            "email": "sjaak@sjaakpriester.nl"
+            "email": "sjaak@wsidebottomriester.nl"
         }
     ],
     "require": {
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "sjaakp\\pluto\\": ""
+            "wsidebottom\\pluto\\": ""
         }
     }
 }

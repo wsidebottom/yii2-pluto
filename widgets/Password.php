@@ -1,6 +1,6 @@
 <?php
 
-namespace sjaakp\pluto\widgets;
+namespace wsidebottom\pluto\widgets;
 
 use yii\helpers\Html;
 use yii\widgets\InputWidget;

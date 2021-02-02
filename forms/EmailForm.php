@@ -7,17 +7,17 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
-namespace sjaakp\pluto\forms;
+namespace wsidebottom\pluto\forms;
 
 use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
-use sjaakp\pluto\models\User;
-use sjaakp\pluto\models\Captcha;
+use wsidebottom\pluto\models\User;
+use wsidebottom\pluto\models\Captcha;
 
 /**
  * Password recover request form
@@ -42,7 +42,7 @@ class EmailForm extends Model
             ['email', 'email'],
             ['email', 'string', 'max' => 128],
             ['email', 'exist',
-                'targetClass' => '\sjaakp\pluto\models\User',
+                'targetClass' => '\wsidebottom\pluto\models\User',
                 'filter' => ['status' => $this->status],
                 'message' => Yii::t('pluto', 'There is no user with this email address.'),
                 'except' => ['resend']

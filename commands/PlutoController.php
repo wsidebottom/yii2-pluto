@@ -1,5 +1,5 @@
 <?php
-namespace sjaakp\pluto\commands;
+namespace wsidebottom\pluto\commands;
 
 use Yii;
 use yii\console\Controller;
@@ -9,7 +9,7 @@ use yii\console\ExitCode;
  * Defines general Roles, Permissions, and Conditions (Rules).
  *
  * Class PlutoController
- * @package sjaakp\pluto
+ * @package wsidebottom\pluto
  */
 class PlutoController extends Controller
 {
@@ -33,7 +33,7 @@ class PlutoController extends Controller
         ];
 
         foreach ($rules as $rule)   {
-            $className = "\sjaakp\pluto\\rbac\\{$rule}Rule";
+            $className = "\wsidebottom\pluto\\rbac\\{$rule}Rule";
             $r = new $className();
             $auth->add($r);
 

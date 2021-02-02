@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model sjaakp\pluto\models\Permission */
+/* @var $model wsidebottom\pluto\models\Permission */
 /* @var $rules array */
 
 $this->title = Yii::t('pluto', 'New Permission');

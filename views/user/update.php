@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model sjaakp\pluto\models\User */
+/* @var $model wsidebottom\pluto\models\User */
 /* @var $roles string[] */
 /* @var $defaultRoles string[] */
 

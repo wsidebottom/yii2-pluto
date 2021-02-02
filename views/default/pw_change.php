@@ -7,15 +7,15 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
 use yii\helpers\Html;
-use sjaakp\pluto\widgets\Password;
+use wsidebottom\pluto\widgets\Password;
 
 /* @var $this yii\web\View */
-/* @var $model sjaakp\pluto\forms\PwChangeForm */
+/* @var $model wsidebottom\pluto\forms\PwChangeForm */
 /* @var $context yii\web\Controller */
 /* @var $form yii\widgets\ActiveForm */
 

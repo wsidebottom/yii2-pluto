@@ -7,14 +7,14 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
 use yii\captcha\Captcha;
 
 /* @var $this yii\web\View */
-/* @var $model sjaakp\pluto\models\User */
+/* @var $model wsidebottom\pluto\models\User */
 /* @var $form yii\widgets\ActiveForm */
 
 if (in_array('captcha', $model->flags)): ?>

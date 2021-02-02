@@ -1,6 +1,6 @@
 <?php
 
-namespace sjaakp\pluto\migrations;
+namespace wsidebottom\pluto\migrations;
 
 use yii\db\Migration;
 

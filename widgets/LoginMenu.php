@@ -7,17 +7,17 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
-namespace sjaakp\pluto\widgets;
+namespace wsidebottom\pluto\widgets;
 
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
 use yii\helpers\Html;
-use sjaakp\pluto\Module;
+use wsidebottom\pluto\Module;
 
 class LoginMenu extends Widget
 {

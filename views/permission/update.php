@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
-/* @var $model sjaakp\pluto\models\Permission */
+/* @var $model wsidebottom\pluto\models\Permission */
 /* @var $rules array */
 /* @var $roles array */
 

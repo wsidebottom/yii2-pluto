@@ -1,6 +1,6 @@
 <?php
 
-namespace sjaakp\pluto\assets;
+namespace wsidebottom\pluto\assets;
 
 use yii\web\AssetBundle;
 

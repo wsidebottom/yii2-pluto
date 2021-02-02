@@ -7,11 +7,11 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
-namespace sjaakp\pluto\models;
+namespace wsidebottom\pluto\models;
 
 use Yii;
 use yii\base\InvalidCallException;
@@ -21,7 +21,7 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 use yii\helpers\ArrayHelper;
-use sjaakp\pluto\Module;
+use wsidebottom\pluto\Module;
 
 /**
  * User model
@@ -91,7 +91,7 @@ class User extends ActiveRecord implements IdentityInterface
         $r = ArrayHelper::merge([
             ['name', 'trim'],
             ['name', 'required'],
-            ['name', 'unique', 'targetClass' => '\sjaakp\pluto\models\User',
+            ['name', 'unique', 'targetClass' => '\wsidebottom\pluto\models\User',
                 'message' => Yii::t('pluto', 'This name has already been taken')],
             ['name', 'string', 'min' => 2, 'max' => 60],
 
@@ -99,7 +99,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['email', 'required', 'except' => 'delete'],
             ['email', 'email'],
             ['email', 'string', 'max' => 128],
-            ['email', 'unique', 'targetClass' => '\sjaakp\pluto\models\User',
+            ['email', 'unique', 'targetClass' => '\wsidebottom\pluto\models\User',
                 'message' => Yii::t('pluto', 'This email address has already been taken')],
 
             ['password', 'required', 'on' => ['create', self::NEW_PW]],

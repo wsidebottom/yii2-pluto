@@ -2,9 +2,9 @@ yii2-pluto
 ==========
 ## User management module for Yii2 framework
 
-[![Latest Stable Version](https://poser.pugx.org/sjaakp/yii2-pluto/v/stable)](https://packagist.org/packages/sjaakp/yii2-pluto)
-[![Total Downloads](https://poser.pugx.org/sjaakp/yii2-pluto/downloads)](https://packagist.org/packages/sjaakp/yii2-pluto)
-[![License](https://poser.pugx.org/sjaakp/yii2-pluto/license)](https://packagist.org/packages/sjaakp/yii2-pluto)
+[![Latest Stable Version](https://poser.pugx.org/wsidebottom/yii2-pluto/v/stable)](https://packagist.org/packages/wsidebottom/yii2-pluto)
+[![Total Downloads](https://poser.pugx.org/wsidebottom/yii2-pluto/downloads)](https://packagist.org/packages/wsidebottom/yii2-pluto)
+[![License](https://poser.pugx.org/wsidebottom/yii2-pluto/license)](https://packagist.org/packages/wsidebottom/yii2-pluto)
 
 **Pluto** is a complete user management module for the [Yii 2.0](https://www.yiiframework.com/ "Yii") PHP Framework.
 
@@ -12,7 +12,7 @@ It manages log in and log out of users, sign up, email-confirmation, blocking an
 Users can change their email-address, ask for a reset of their password. 
 The site administrator can define roles and permissions and assign permissions to roles. 
 
-A demonstration of **Pluto** is [here](https://demo.sjaakpriester.nl).
+A demonstration of **Pluto** is [here](https://demo.wsidebottomriester.nl).
 
 ## Prerequisites ##
 
@@ -35,13 +35,13 @@ A demonstration of **Pluto** is [here](https://demo.sjaakpriester.nl).
 Install **yii2-pluto** in the usual way with [Composer](https://getcomposer.org/). 
 Add the following to the require section of your `composer.json` file:
 
-`"sjaakp/yii2-pluto": "*"` 
+`"wsidebottom/yii2-pluto": "*"` 
 
 or run:
 
-`composer require sjaakp/yii2-pluto` 
+`composer require wsidebottom/yii2-pluto` 
 
-You can manually install **yii2-pluto** by [downloading the source in ZIP-format](https://github.com/sjaakp/yii2-pluto/archive/master.zip).
+You can manually install **yii2-pluto** by [downloading the source in ZIP-format](https://github.com/wsidebottom/yii2-pluto/archive/master.zip).
  
 #### Module ####
 
@@ -54,7 +54,7 @@ directory. Add the following to the configuration array:
     // ...
     'modules' => [
         'pluto' => [
-            'class' => 'sjaakp\pluto\Module',
+            'class' => 'wsidebottom\pluto\Module',
             // several options
         ],
     ],
@@ -84,7 +84,7 @@ To complete the installation, two [console commands](https://www.yiiframework.co
   
     yii migrate
     
-The migration applied is called `sjaakp\pluto\migrations\m000000_000000_init`.
+The migration applied is called `wsidebottom\pluto\migrations\m000000_000000_init`.
     
 The second console command is:
  
@@ -136,7 +136,7 @@ to accomplish this, but here are some general guidelines:
 
     <?php
     use ...
-    use sjaakp\pluto\widgets\LoginMenu
+    use wsidebottom\pluto\widgets\LoginMenu
     
     $user = Yii::$app->user;
     
@@ -175,7 +175,7 @@ The **Pluto** module has an extensive range of options. They are set in the appl
      // ...
      'modules' => [
          'pluto' => [
-             'class' => 'sjaakp\pluto\Module',
+             'class' => 'wsidebottom\pluto\Module',
              'passwordHint' => 'At least eight characters, one uppercase, one digit',
              // ...
              // ... more options ...
@@ -223,8 +223,8 @@ The options (all are optional) are:
  - **profileClass** `null|string|array` Name of the class used as [profile](#profile). Can also be a configuration array.
       Default: `null`.
  - **identityClass** `string` Class name of the identity object associated with the current user.
-      May be changed into a class extended from `sjaakp\pluto\models\User`. 
-      Default: `'sjaakp\pluto\models\User'`.           
+      May be changed into a class extended from `wsidebottom\pluto\models\User`. 
+      Default: `'wsidebottom\pluto\models\User'`.           
    
 
 ## Profile ##
@@ -284,7 +284,7 @@ enough. You'll *never* want this setting in a live site.
 
 ## Internationalization ##
 
-All of **Pluto**'s utterances are translatable. The translations are in the `'sjaakp\pluto\messages'`
+All of **Pluto**'s utterances are translatable. The translations are in the `'wsidebottom\pluto\messages'`
  directory.
  
 You can override **Pluto**'s translations by setting the application's 
@@ -317,7 +317,7 @@ If you want a single or only a few messages translated and use **Pluto**'s trans
      <?php
      // app/messages/nl/pluto.php
      
-     $plutoMessages = Yii::getAlias('@sjaakp/pluto/messages/nl/pluto.php');
+     $plutoMessages = Yii::getAlias('@wsidebottom/pluto/messages/nl/pluto.php');
      
      return array_merge (require($plutoMessages), [
         'Settings' => 'Instellingen',   // your preferred translation
@@ -338,7 +338,7 @@ Any of the **Pluto**'s view files can be overridden, perhaps to add a logo or
      // ...
      'modules' => [
          'pluto' => [
-             'class' => 'sjaakp\pluto\Module',
+             'class' => 'wsidebottom\pluto\Module',
              'views' => [
                   'default' => [    // Pluto controller id
                       'login' => <view file>    // action => view
@@ -356,9 +356,9 @@ Any of the **Pluto**'s view files can be overridden, perhaps to add a logo or
 
 ## Override identity-class ##
 
-**Pluto** sets `sjaakp\pluto\models\User` as `identityClass` of the application's `yii\web\User`
+**Pluto** sets `wsidebottom\pluto\models\User` as `identityClass` of the application's `yii\web\User`
   component. If you're ambitious, you might develop your own identity-class. This should
-  extend from `sjaakp\pluto\models\User` and be set as **Pluto**'s `identityClass` option.
+  extend from `wsidebottom\pluto\models\User` and be set as **Pluto**'s `identityClass` option.
       
     
 ## Pluto ##
@@ -370,7 +370,7 @@ just set up the module like this:
     // ...
     'modules' => [
         'saturnus' => [
-            'class' => 'sjaakp\pluto\Module',
+            'class' => 'wsidebottom\pluto\Module',
             // several options
         ],
     ],

@@ -7,18 +7,18 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
-namespace sjaakp\pluto\controllers;
+namespace wsidebottom\pluto\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\FileHelper;
 use yii\data\ArrayDataProvider;
-use sjaakp\pluto\models\Rule;
+use wsidebottom\pluto\models\Rule;
 
 class RuleController extends Controller
 {
@@ -36,7 +36,7 @@ class RuleController extends Controller
                         'permissions' => ['manageRoles'],
                     ],
                 ],
-                'denyCallback' => [ 'sjaakp\pluto\Module', 'accessDenied' ]
+                'denyCallback' => [ 'wsidebottom\pluto\Module', 'accessDenied' ]
             ],
             'verbs' => [
                 'class' => VerbFilter::class,

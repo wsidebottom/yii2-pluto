@@ -7,11 +7,11 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
-namespace sjaakp\pluto;
+namespace wsidebottom\pluto;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -22,7 +22,7 @@ use yii\web\Application as WebApplication;
 use yii\web\GroupUrlRule;
 use yii\web\UserEvent;
 use yii\helpers\ArrayHelper;
-use sjaakp\pluto\models\User;
+use wsidebottom\pluto\models\User;
 
 /**
  * user module definition class
@@ -54,9 +54,9 @@ class Module extends YiiModule implements BootstrapInterface
      * If you want to override the mailer views, set viewPath.
      */
     public $mailOptions = [
-        'viewPath' => '@sjaakp/pluto/mail',
-        'htmlLayout' => '@sjaakp/pluto/mail/layouts/html',
-        'textLayout' => '@sjaakp/pluto/mail/layouts/text',
+        'viewPath' => '@wsidebottom/pluto/mail',
+        'htmlLayout' => '@wsidebottom/pluto/mail/layouts/html',
+        'textLayout' => '@wsidebottom/pluto/mail/layouts/text',
     ];
 
     /**
@@ -142,9 +142,9 @@ class Module extends YiiModule implements BootstrapInterface
 
     /**
      * @var string  the class name of the identity object associated with the current user
-     * May be changed into a class extended from sjaakp\pluto\models\User
+     * May be changed into a class extended from wsidebottom\pluto\models\User
      */
-    public $identityClass = 'sjaakp\pluto\models\User';
+    public $identityClass = 'wsidebottom\pluto\models\User';
 
     /**
      * @throws InvalidConfigException
@@ -160,7 +160,7 @@ class Module extends YiiModule implements BootstrapInterface
             Yii::$app->i18n->translations['pluto'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
                 'sourceLanguage' => 'en-US',
-                'basePath' => '@sjaakp/pluto/messages',
+                'basePath' => '@wsidebottom/pluto/messages',
             ];
         }
     }
@@ -303,10 +303,10 @@ class Module extends YiiModule implements BootstrapInterface
                 'migrate' => [
                     'class' => '\yii\console\controllers\MigrateController',
                     'migrationNamespaces' => [
-                        'sjaakp\pluto\migrations'
+                        'wsidebottom\pluto\migrations'
                     ]
                 ],
-                'pluto' => 'sjaakp\pluto\commands\PlutoController'
+                'pluto' => 'wsidebottom\pluto\commands\PlutoController'
             ]);
         }
     }

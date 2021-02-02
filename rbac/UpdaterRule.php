@@ -1,13 +1,13 @@
 <?php
 
-namespace sjaakp\pluto\rbac;
+namespace wsidebottom\pluto\rbac;
 
 use yii\rbac\Rule;
 
 /**
  * Class UpdaterRule
  * Checks whether a model is updated by a user
- * @package sjaakp\pluto
+ * @package wsidebottom\pluto
  */
 class UpdaterRule extends Rule
 {

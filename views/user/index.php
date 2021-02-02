@@ -7,8 +7,8 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
 use yii\helpers\Html;
@@ -16,7 +16,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel sjaakp\pluto\models\UserSearch */
+/* @var $searchModel wsidebottom\pluto\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $defaultRoles string[] */
 /* @var $context yii\web\Controller */

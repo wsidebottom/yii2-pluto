@@ -7,16 +7,16 @@
  * Copyright (c) 2019
  * Sjaak Priester, Amsterdam
  * MIT License
- * https://github.com/sjaakp/yii2-pluto
- * https://sjaakpriester.nl
+ * https://github.com/wsidebottom/yii2-pluto
+ * https://wsidebottomriester.nl
  */
 
-namespace sjaakp\pluto\controllers;
+namespace wsidebottom\pluto\controllers;
 
-use sjaakp\pluto\Module;
+use wsidebottom\pluto\Module;
 use Yii;
-use sjaakp\pluto\models\User;
-use sjaakp\pluto\models\UserSearch;
+use wsidebottom\pluto\models\User;
+use wsidebottom\pluto\models\UserSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -41,7 +41,7 @@ class UserController extends Controller
                         'permissions' => ['manageUsers'],
                     ],
                 ],
-                'denyCallback' => [ 'sjaakp\pluto\Module', 'accessDenied' ]
+                'denyCallback' => [ 'wsidebottom\pluto\Module', 'accessDenied' ]
             ],
             'verbs' => [
                 'class' => VerbFilter::class,

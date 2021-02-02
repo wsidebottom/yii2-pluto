@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $user sjaakp\pluto\models\User */
+/* @var $user wsidebottom\pluto\models\User */
 /* @var $link string */
 
 ?>

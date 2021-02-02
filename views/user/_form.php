@@ -2,7 +2,7 @@
 
 use softark\duallistbox\DualListbox;
 use yii\helpers\Html;
-use sjaakp\pluto\models\User;
+use wsidebottom\pluto\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model User */

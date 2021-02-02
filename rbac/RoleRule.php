@@ -1,14 +1,14 @@
 <?php
 
-namespace sjaakp\pluto\rbac;
+namespace wsidebottom\pluto\rbac;
 
 use yii\rbac\Rule;
-use sjaakp\pluto\models\User;
+use wsidebottom\pluto\models\User;
 
 /**
  * Class RoleRule
  * Checks whether a User as a certain Role (default: 'admin')
- * @package sjaakp\pluto
+ * @package wsidebottom\pluto
  */
 class RoleRule extends Rule
 {

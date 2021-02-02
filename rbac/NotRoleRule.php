@@ -1,14 +1,14 @@
 <?php
 
-namespace sjaakp\pluto\rbac;
+namespace wsidebottom\pluto\rbac;
 
 use yii\rbac\Rule;
-use sjaakp\pluto\models\User;
+use wsidebottom\pluto\models\User;
 
 /**
  * Class NotRoleRule
  * Checks whether a User does *not* have a certain Role (default: 'admin')
- * @package sjaakp\pluto
+ * @package wsidebottom\pluto
  */
 class NotRoleRule extends Rule
 {

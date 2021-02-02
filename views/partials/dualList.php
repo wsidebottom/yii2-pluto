@@ -1,6 +1,6 @@
 <?php
 use softark\duallistbox\DualListbox;
-use sjaakp\pluto\assets\PlutoAsset;
+use wsidebottom\pluto\assets\PlutoAsset;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap4\ActiveForm */

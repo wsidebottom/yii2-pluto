@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model sjaakp\pluto\models\User */
+/* @var $model wsidebottom\pluto\models\User */
 /* @var $roles string[] */
 /* @var $defaultRoles string[] */
 
