@@ -9,23 +9,16 @@ use yii\widgets\ListView;
 /* @var $rules array */
 /* @var $users yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('pluto', 'Update Role: {rolename}', [
-    'rolename' => $model->name
-]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('pluto', 'Roles'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = Yii::t('pluto', 'Update {rolename}', [
-    'rolename' => $model->name
-]);
+$this->title = 'Update Role: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Roles', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Update ' . $model->name;
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
+<h1><?=Html::encode($this->title)?></h1>
 
-<?= $this->render('_form', [
-    'model' => $model,
-    'rules' => $rules
-]) ?>
+<?=$this->render('_form', ['model' => $model, 'rules' => $rules])?>
 
 <hr />
-<?= DetailView::widget([
+<?=DetailView::widget([
     'model' => $model,
     'attributes' => [
         'createdAt:datetime',
@@ -33,22 +26,22 @@ $this->params['breadcrumbs'][] = Yii::t('pluto', 'Update {rolename}', [
     ],
     'options' => [
         'tag' => 'dl',
-        'class' => 'dl-horizontal small text-muted'
+        'class' => 'dl-horizontal small text-muted',
     ],
     'template' => '<dt>{label}</dt><dd>{value}</dd>',
     'formatter' => [
         'class' => 'yii\i18n\Formatter',
-        'datetimeFormat' => 'short'
+        'datetimeFormat' => 'short',
     ],
-]) ?>
+])?>
 
-<h4><small><?= Yii::t('pluto', 'Users with this Role') ?></small></h4>
-<?= ListView::widget([
+<h4><small><?='Users with this Role'?></small></h4>
+<?=ListView::widget([
     'dataProvider' => $users,
     'itemView' => function ($model, $key, $index, $widget) {
-        return Html::a($model->name, ['user/update', 'id' => $model->id]);
+        return Html::a($model->username, ['user/update', 'id' => $model->id]);
     },
     'summary' => '<div class="small text-info">{begin}-{end}/{totalCount}</div>',
-    'emptyText' => Yii::t('pluto', 'none'),
-    'emptyTextOptions' => [ 'class' => 'small text-info'],
-]) ?>
+    'emptyText' => 'none',
+    'emptyTextOptions' => ['class' => 'small text-info'],
+])?>

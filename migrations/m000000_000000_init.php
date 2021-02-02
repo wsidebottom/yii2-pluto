@@ -15,7 +15,7 @@ class m000000_000000_init extends Migration
 
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey()->unsigned(),
-            'name' => $this->string(60)->notNull()->unique(),
+            'username' => $this->string(60)->notNull()->unique(),
             'auth_key' => $this->string(32)->null(),
             'password_hash' => $this->string(128)->null(),
             'token' => $this->string(48)->null()->unique(),
@@ -32,6 +32,6 @@ class m000000_000000_init extends Migration
 
     public function down()
     {
-        $this->dropTable('{{%user}}');
+        return false;
     }
 }

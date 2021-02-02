@@ -28,7 +28,7 @@ class LoginForm extends Model
 {
     use Captcha, Password;
 
-    public $name;
+    public $username;
     public $password;
     public $rememberMe = true;
     public $flags;
@@ -40,9 +40,9 @@ class LoginForm extends Model
      */
     public function rules()
     {
-//        $mod = Module::getInstance();
+        //$mod = Module::getInstance();
         return ArrayHelper::merge([
-            [['name', 'password'], 'required'],
+            [['username', 'password'], 'required'],
             ['password', 'validatePassword'],
             ['rememberMe', 'boolean'],
         ], $this->captchaRules(), $this->passwordRules());
@@ -54,11 +54,11 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('pluto', 'Username or email'),
-            'password' => Yii::t('pluto', 'Password'),
-            'password_repeat' => Yii::t('pluto', 'Repeat Password'),
-            'rememberMe' => Yii::t('pluto', 'Remember me'),
-            'captcha' => Yii::t('pluto', 'Enter verification code')
+            'username' => 'Username',
+            'password' => 'Password',
+            'password_repeat' => 'Repeat Password',
+            'rememberMe' => 'Remember me',
+            'captcha' => 'Enter verification code'
         ];
     }
 
@@ -75,7 +75,7 @@ class LoginForm extends Model
             if (! $user
                 || !$user->isPasswordValid($this->password)
                 || (is_string($mod->fenceMode) && ! Yii::$app->authManager->checkAccess($user->id, $mod->fenceMode))) {
-                $this->addError($attribute, Yii::t('pluto', 'Incorrect username, email or password.'));
+                $this->addError($attribute, 'Incorrect username or password.');
             }
         }
     }
@@ -91,21 +91,19 @@ class LoginForm extends Model
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $duration);
         }
-        
         return false;
     }
 
     /**
-     * Finds user by [[name]]
+     * Finds user by [[username]]
      *
      * @return User|null
      */
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsernameOrEmail($this->name);
+            $this->_user = User::findByUsernameOrEmail($this->username);
         }
-
         return $this->_user;
     }
 }

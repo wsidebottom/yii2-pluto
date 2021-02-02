@@ -19,30 +19,30 @@ $viewOptions = $module->viewOptions;
 $multipleRoles = $module->multipleRoles;
 
 $stats = [
-    User::STATUS_DELETED => Yii::t('pluto', 'deleted'),
-    User::STATUS_BLOCKED => Yii::t('pluto', 'blocked'),
-    User::STATUS_PENDING => Yii::t('pluto', 'pending'),
-    User::STATUS_ACTIVE => Yii::t('pluto', 'active'),
+    User::STATUS_DELETED => 'deleted',
+    User::STATUS_BLOCKED => 'blocked',
+    User::STATUS_PENDING => 'pending',
+    User::STATUS_ACTIVE => 'active',
 ];
 
 $pwHint = $context->module->passwordHint;
-if (! $model->isNewRecord) $pwHint .= '; ' . Yii::t('pluto', 'if empty, password will remain unchanged.')
+if (! $model->isNewRecord) $pwHint .= '; ' . 'if empty, password will remain unchanged.'
 ?>
 
     <?php $form = $module->formClass::begin(); ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <?= $form->field($model, 'firstname')->textInput(['maxlength' => true, 'placeholder' => 'Given Name']) ?>
+        <?= $form->field($model, 'lastname')->textInput(['maxlength' => true, 'placeholder' => 'Surname']) ?>
+    </div>
+    <?= $form->field($model, 'description')->textInput(['maxlength' => true, 'placeholder' => 'User\'s Description']) ?>
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'password')->hint($pwHint)->textInput() ?>
-
     <div class="row mb-3">
         <?= $form->field($model, 'status', [ 'options' => ['class' => 'col-3']])->dropDownList($stats) ?>
-<?php if (! $multipleRoles): ?>
-        <?= $form->field($model, 'singleRole', [ 'options' => ['class' => 'col-3']])
-                ->dropDownList($roles, ['prompt' => '']) ?>
-<?php endif; ?>
+        <?php if (! $multipleRoles): ?>
+            <?= $form->field($model, 'singleRole', [ 'options' => ['class' => 'col-3']])->dropDownList($roles, ['prompt' => '']) ?>
+        <?php endif; ?>
     </div>
 
 <?php if ($multipleRoles): ?>
@@ -61,7 +61,7 @@ if (! $model->isNewRecord) $pwHint .= '; ' . Yii::t('pluto', 'if empty, password
 <?php endif; ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('pluto', 'Save'), $viewOptions['button']) ?>
+        <?= Html::submitButton('Save', $viewOptions['button']) ?>
     </div>
 
     <?php $module->formClass::end(); ?>

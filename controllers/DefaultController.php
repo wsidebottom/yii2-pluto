@@ -75,18 +75,13 @@ class DefaultController extends Controller
         /* @var $module Module */
         $module = $this->module;
 
-        $model = new LoginForm([
-            'flags' => $module->getPwFlags('login')
-        ]);
+        $model = new LoginForm(['flags' => $module->getPwFlags('login')]);
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
             $model->password = '';
-
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+            return $this->render('login', ['model' => $model]);
         }
     }
 
@@ -121,18 +116,12 @@ class DefaultController extends Controller
         $model->generateToken();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-            if ($model->sendTokenEmail(Yii::t('pluto', 'Account registration at {appname}', [
-                'appname' => Yii::$app->name
-            ]), 'confirm')) {
-                Yii::$app->session->setFlash('success',
-                    Yii::t('pluto', 'Thank you for registering. Please check your inbox for a verification email.'));
+            if ($model->sendTokenEmail('Account registration at ' . Yii::$app->name, 'confirm')) {
+                Yii::$app->session->setFlash('success', 'Thank you for registering. Please check your inbox for a verification email.');
                 return $this->goHome();
             }
         }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
+        return $this->render('signup', ['model' => $model]);
     }
 
     /**
@@ -141,9 +130,8 @@ class DefaultController extends Controller
      */
     public function actionConfirm($token)
     {
-        return $this->tokenAction($token,
-            Yii::t('pluto', 'Your registration has been confirmed. You are now logged in.'),
-            Yii::t('pluto', 'Sorry, we are unable to verify your registration.'));
+        return $this->tokenAction($token, 'Your registration has been confirmed. You are now logged in.',
+            'Sorry, we are unable to verify your registration.');
     }
 
     /**
@@ -162,22 +150,17 @@ class DefaultController extends Controller
             $user = User::findByEmail($model->email);
             if ($user)  {
                 $user->generateToken();
-                if ($user->save() && $user->sendTokenEmail(Yii::t('pluto', 'Password reset for {appname}', [
-                        'appname' => Yii::$app->name
-                    ]), 'recover')) {
-                    Yii::$app->session->setFlash('success',
-                        Yii::t('pluto', 'Please check your inbox for further instructions.'));
+                if ($user->save() && $user->sendTokenEmail('Password reset for '.Yii::$app->name, 'recover')) {
+                    Yii::$app->session->setFlash('success', 'Please check your inbox for further instructions.');
                     return $this->goHome();
                 }
             } else {
                 Yii::$app->session->setFlash('error',
-                    Yii::t('pluto', 'Sorry, we are unable to reset the  password related to this email address.'));
+                    'Sorry, we are unable to reset the  password related to this email address.');
             }
         }
 
-        return $this->render('forgot', [
-            'model' => $model,
-        ]);
+        return $this->render('forgot', ['model' => $model]);
     }
 
     /**
@@ -201,9 +184,7 @@ class DefaultController extends Controller
 
                 if ($model->save(false))  {
                     if (Yii::$app->user->login($model)) {
-                        Yii::$app->session->setFlash('success',
-                            Yii::t('pluto', 'New password saved. You are now logged in.'));
-
+                        Yii::$app->session->setFlash('success', 'New password saved. You are now logged in.');
                         return $this->goHome();
                     }
                 }
@@ -233,20 +214,13 @@ class DefaultController extends Controller
         ]);
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $user = User::findByEmail($model->email, User::STATUS_PENDING);
-            if ($user && $user->sendTokenEmail(Yii::t('pluto', 'Account registration at {appname}', [
-                    'appname' => Yii::$app->name
-                ]), 'confirm'))  {
-                Yii::$app->session->setFlash('success',
-                    Yii::t('pluto', 'Please check your inbox for a verification email.'));
+            if ($user && $user->sendTokenEmail('Account registration at '.Yii::$app->name, 'confirm'))  {
+                Yii::$app->session->setFlash('success', 'Please check your inbox for a verification email.');
                 return $this->goHome();
             }
-            Yii::$app->session->setFlash('error',
-                Yii::t('pluto', 'Sorry, we were unable to resend a verification email to this email address.'));
+            Yii::$app->session->setFlash('error', 'Sorry, we were unable to resend a verification email to this email address.');
         }
-
-        return $this->render('resend', [
-            'model' => $model,
-        ]);
+        return $this->render('resend', ['model' => $model]);
     }
 
     /**
@@ -275,20 +249,14 @@ class DefaultController extends Controller
             }
             if ($user->save()) {
                 if ($emailChanged)  {
-                    $user->sendTokenEmail(Yii::t('pluto', 'Confirmation email changed at {appname}', [
-                        'appname' => Yii::$app->name
-                    ]), 'confirm');
-                    Yii::$app->session->setFlash('success',
-                        Yii::t('pluto', 'Please check your inbox for a verification email.'));
+                    $user->sendTokenEmail('Confirmation email changed at '.Yii::$app->name, 'confirm');
+                    Yii::$app->session->setFlash('success', 'Please check your inbox for a verification email.');
                 }
-                else Yii::$app->session->setFlash('success', Yii::t('pluto', 'Settings saved.'));
+                else Yii::$app->session->setFlash('success', 'Settings saved.');
                 return $this->goBack();
             }
         }
-
-        return $this->render( 'settings', [
-            'model' => $user,
-        ]);
+        return $this->render( 'settings', ['model' => $user]);
     }
 
     /**
@@ -297,9 +265,7 @@ class DefaultController extends Controller
      */
     public function actionEmailChanged($token)
     {
-        return $this->tokenAction($token,
-            Yii::t('pluto', 'Your email has been confirmed. Settings saved.'),
-            Yii::t('pluto', 'Sorry, we are unable to verify your email.'));
+        return $this->tokenAction($token, 'Your email has been confirmed. Settings saved.', 'Sorry, we are unable to verify your email.');
     }
 
     /**
@@ -322,16 +288,11 @@ class DefaultController extends Controller
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($user->save(false)) Yii::$app->session->setFlash('success',
-                Yii::t('pluto', 'New password saved.'));
-            else  Yii::$app->session->setFlash('error',
-                Yii::t('pluto', 'Sorry, we were unable to change your password.'));
+            if ($user->save(false)) Yii::$app->session->setFlash('success', 'New password saved.');
+            else  Yii::$app->session->setFlash('error', 'Sorry, we were unable to change your password.');
             return $this->goBack();
         }
-
-        return $this->render('pw_change', [
-            'model' => $model,
-        ]);
+        return $this->render('pw_change', ['model' => $model]);
     }
 
     /**
@@ -351,13 +312,9 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             Yii::$app->user->logout();
             $model->delete();
-
             return $this->goHome();
         }
-
-        return $this->render('delete', [
-            'model' => $model,
-        ]);
+        return $this->render('delete', ['model' => $model]);
     }
 
     /**
@@ -388,14 +345,9 @@ class DefaultController extends Controller
             $now = date('Y-m-d H:i:s');
             $line = str_repeat('=', 32);
             $content = "User data at $appName\r\n$line\r\nGenerated at $now\r\n\r\n" . implode("\r\n", $csv);
-            return Yii::$app->response->sendContentAsFile($content, "$appName.txt", [
-                'mimeType' => 'text/plain',
-            ]);
+            return Yii::$app->response->sendContentAsFile($content, "$appName.txt", ['mimeType' => 'text/plain']);
         }
-
-        return $this->render('download', [
-            'model' => $model,
-        ]);
+        return $this->render('download', ['model' => $model]);
     }
 
     /**
@@ -404,7 +356,7 @@ class DefaultController extends Controller
      * @param $errorFlash
      * @return \yii\web\Response
      */
-    protected function tokenAction($token, $successFlash, $errorFlash)  {
+    protected function tokenAction($token, $successFlash, $errorFlash) {
         $user = User::findByToken($token, User::STATUS_PENDING);
         if ($user)  {
             $user->removeToken();

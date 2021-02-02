@@ -7,8 +7,8 @@ use yii\helpers\Html;
 /* @var $roles string[] */
 /* @var $defaultRoles string[] */
 
-$this->title = Yii::t('pluto', 'New User');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('pluto', 'Users'), 'url' => ['index']];
+$this->title = 'New User';
+$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1><?= Html::encode($this->title) ?></h1>

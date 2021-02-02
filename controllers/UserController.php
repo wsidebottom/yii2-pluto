@@ -60,7 +60,7 @@ class UserController extends Controller
     {
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->sort->defaultOrder = ['name' => SORT_ASC];
+        $dataProvider->sort->defaultOrder = ['username' => SORT_ASC];
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -105,7 +105,7 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findAndCheckModel($id, Yii::t('pluto', 'update'));
+        $model = $this->findAndCheckModel($id, 'update');
         if (! $model) return $this->redirect(['index']);
 
         $model->scenario = 'update';
@@ -114,7 +114,7 @@ class UserController extends Controller
             if ($model->save()) {
                 return $this->redirect(['index']);
             }
-            // if error, updated_at may be 'NOW()', which DetailView doesn't understand
+            // if error, updated_at may be 'GETDATE()', which DetailView doesn't understand
             $model->updated_at = $model->getOldAttribute('updated_at');
         }
 
@@ -152,7 +152,7 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $model = $this->findAndCheckModel($id, Yii::t('pluto', 'delete'));
+        $model = $this->findAndCheckModel($id, 'delete');
         if ($model) $model->delete();
         return $this->redirect(['index']);
     }
@@ -165,14 +165,10 @@ class UserController extends Controller
      */
     protected function findAndCheckModel($id, $verb)
     {
+        $longName = Yii::$app->user->identity->firstname.' '.Yii::$app->user->identity->lastname;
         $model = $this->findModel($id);
-        if (! Yii::$app->user->can('updateUser', $model))   {
-            Yii::$app->session->setFlash('danger', Yii::t('pluto',
-                'Sorry {username}, you\'re not allowed to {verb} <strong>{goal}</strong>\'s user data.', [
-                    'verb' => $verb,
-                    'username' => Yii::$app->user->identity->name ?? '',
-                    'goal' => $model->name ?? ''
-                ]));
+        if (! Yii::$app->user->can('updateUser', $model)) {
+            Yii::$app->session->setFlash('danger', 'Sorry '.$longName.', you\'re not allowed to '.$verb.' <strong>'.$model->username.'</strong>\'s user data.');
             return null;
         }
         return $model;
@@ -188,7 +184,6 @@ class UserController extends Controller
         if (($model = User::findOne($id)) !== null) {
             return $model;
         }
-
-        throw new NotFoundHttpException(Yii::t('pluto', Yii::t('pluto', 'The requested User does not exist.')));
+        throw new NotFoundHttpException('The requested User does not exist.');
     }
 }

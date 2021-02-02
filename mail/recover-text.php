@@ -5,10 +5,8 @@
 /* @var $link string */
 
 ?>
-<?= Yii::t('pluto', 'Hello {username},', [
-    'username' => $user->name
-]) ?>
+<?= 'Hello '.$user->username ?>
 
-<?= Yii::t('pluto', 'Follow the link below to reset your password:') ?>
+<?= 'Follow the link below to reset your password:' ?>
 
 <?= $link ?>

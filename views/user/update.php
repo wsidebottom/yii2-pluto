@@ -8,19 +8,13 @@ use yii\widgets\DetailView;
 /* @var $roles string[] */
 /* @var $defaultRoles string[] */
 
-$this->title = Yii::t('pluto', 'Update user: {username}', [
-    'username' => $model->name,
-]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('pluto', 'Users'), 'url' => ['index']];
+$this->title = 'Update user: '.$model->username;
+$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 
-<?= $this->render('_form', [
-    'model' => $model,
-    'roles' => $roles,
-    'defaultRoles' => $defaultRoles,
-]) ?>
+<?= $this->render('_form', [ 'model' => $model, 'roles' => $roles, 'defaultRoles' => $defaultRoles]) ?>
 
 <?= DetailView::widget([
     'model' => $model,

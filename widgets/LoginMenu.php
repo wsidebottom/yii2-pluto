@@ -39,7 +39,7 @@ class LoginMenu extends Widget
     /**
      * @var string
      */
-    public $userMaxWidth = '8em';
+    public $userMaxWidth = '12em';
 
     /**
      * @throws InvalidConfigException
@@ -50,8 +50,8 @@ class LoginMenu extends Widget
         $pluto = $mod->id;
         $user = Yii::$app->user;
 
-        if ($user->isGuest)   {
-            return Html::tag('li', Html::a(Yii::t('pluto','Login'), ["/$pluto/login"], ['class' => 'nav-link']), ['class' => 'nav-item']);
+        if ($user->isGuest) {
+            return Html::tag('li', Html::a('Login', ["/$pluto/login"], ['class' => 'nav-link']), ['class' => 'nav-item']);
         }
         $liOptions = [
             'class' => 'dropdown nav-item',
@@ -67,22 +67,22 @@ class LoginMenu extends Widget
 
         $items = [
             [
-                'label' => Yii::t('pluto','Settings'),
+                'label' => 'Settings',
                 'url' => ["/$pluto/settings"],
             ],
             [
-                'label' => Yii::t('pluto','Profile Settings'),
+                'label' => 'Profile Settings',
                 'url' => [$this->profileUpdate, 'id' => $user->id ],
                 'visible' => ! is_null($mod->profileClass),
             ],
             '<div class="dropdown-divider"></div>',
             [
-                'label' => Yii::t('pluto','Manage Users'),
+                'label' => 'Manage Users',
                 'url' => ["/$pluto/user"],
                 'visible' => $manageUsers,
             ],
             [
-                'label' => Yii::t('pluto','Manage Roles'),
+                'label' => 'Manage Roles',
                 'url' => ["/$pluto/role"],
                 'visible' => $manageRoles,
             ],
@@ -95,7 +95,7 @@ class LoginMenu extends Widget
             $items[] = '<div class="dropdown-divider"></div>';
         }
         $items[] = [
-            'label' => Yii::t('pluto','Logout'),
+            'label' => 'Logout',
             'url' => ["/$pluto/logout"],
             'linkOptions' => ['data-method' => 'post']
         ];
@@ -105,7 +105,6 @@ class LoginMenu extends Widget
             'items' => $items,
             'options' => $this->options
         ]);
-        return Html::tag('li', Html::a(Yii::$app->user->identity->name,
-                '#', $aOptions) . $dropdown, $liOptions);
+        return Html::tag('li', Html::a(Yii::$app->user->identity->firstname.' '.Yii::$app->user->identity->lastname, '#', $aOptions) . $dropdown, $liOptions);
     }
 }

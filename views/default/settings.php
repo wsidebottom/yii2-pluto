@@ -21,8 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = $module->formClass::begin(); ?>
             <fieldset class="border rounded p-3 mb-4">
                 <legend class="w-auto px-1 bg-white"><?= Yii::t('pluto', 'Change these fields') ?></legend>
-                <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
-                <?= $form->field($model, 'email')->textInput() ?>
+                <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'autofocus' => true]) ?>
+                <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'lastname')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
             </fieldset>
             <?= $this->render('_password', ['model' => $model, 'form' => $form, 'pwHint' => $pwHint ]) ?>
             <?= $this->render('_captcha', ['model' => $model, 'form' => $form]) ?>
@@ -33,9 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <hr />
         <p><?= Html::a(Yii::t('pluto', 'Change password'), ['pw-change'], array_merge([
                 'title' => Yii::t('pluto', 'Change your password'),
-            ], $viewOptions['link'])) ?>
-        <?= Html::a(Yii::t('pluto', 'Forget me'), ['delete'], array_merge([
-                'title' => Yii::t('pluto', 'Remove all your data from this site'),
             ], $viewOptions['link'])) ?>
         <?= Html::a(Yii::t('pluto', 'Download data'), ['download'], array_merge([
                 'title' => Yii::t('pluto', 'Download your personal data from this site'),

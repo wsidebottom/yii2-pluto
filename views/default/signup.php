@@ -18,17 +18,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= Html::beginTag('div', $viewOptions['row']) ?>
     <?= Html::beginTag('div', $viewOptions['col']) ?>
         <h1><?= Html::encode($this->title) ?></h1>
-        <p class="hint-block"><?= Yii::t('pluto', 'Please fill out these fields to register at {appname}.', [
-                'appname' => Yii::$app->name
-            ]) ?>.</p>
+        <p class="hint-block"><?= 'Please fill out these fields to register at '.Yii::$app->name ?>.</p>
         <?php $form = $module->formClass::begin(); ?>
-            <?= $form->field($model, 'name')->textInput(['autofocus' => true, 'maxlength' => true]) ?>
-            <?= $form->field($model, 'email')->hint(Yii::t('pluto', 'This must be a real email address'))
-                ->textInput(['maxlength' => true]) ?>
-            <?= $this->render('_password', ['model' => $model, 'form' => $form,'pwHint'=>$pwHint]) ?>
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'maxlength' => true, 'placeholder' => 'Username']) ?>
+            <?= $form->field($model, 'firstname')->textInput(['maxlength' => true, 'placeholder' => 'Given Name']) ?>
+            <?= $form->field($model, 'lastname')->textInput(['maxlength' => true, 'placeholder' => 'Surname']) ?>
+            <?= $form->field($model, 'email')->hint('This must be a real email address')->textInput(['maxlength' => true, 'placeholder' => 'address@example.com']) ?>
+            <?= $this->render('_password', ['model' => $model, 'form' => $form, 'pwHint'=>$pwHint]) ?>
             <?= $this->render('_captcha', ['model' => $model, 'form' => $form]) ?>
             <div class="form-group mt-4">
-                <?= Html::submitButton(Yii::t('pluto', 'Register'), $viewOptions['button']) ?>
+                <?= Html::submitButton('Register', $viewOptions['button']) ?>
             </div>
         <?php $module->formClass::end(); ?>
     </div>

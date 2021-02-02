@@ -7,11 +7,9 @@ use yii\helpers\Html;
 
 ?>
 <div class="recover-email">
-    <p><?= Yii::t('pluto', 'Hello {username},', [
-            'username' => $user->name
-        ]) ?></p>
+    <p><?= 'Hello '.$user->username ?></p>
 
-    <p><?= Yii::t('pluto', 'Follow the link below to reset your password:') ?></p>
+    <p><?= 'Follow the link below to reset your password:' ?></p>
 
     <p><?= Html::a(Html::encode($link), $link) ?></p>
 </div>

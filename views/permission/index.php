@@ -12,8 +12,8 @@ use yii\grid\GridView;
 $context = $this->context;
 $viewOptions = $context->module->viewOptions;
 
-$this->title = Yii::t('pluto', 'Permissions');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('pluto', 'Roles'), 'url' => ['role/index']];
+$this->title = 'Permissions';
+$this->params['breadcrumbs'][] = ['label' => 'Roles', 'url' => ['role/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1><?= $this->title ?></h1>
@@ -28,14 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'attribute' => 'name',
-            'label' => Yii::t('pluto', 'Name'),
+            'label' => 'Name',
             'content' => function($model, $key, $index, $widget)    {
                 return Html::a($model->name, [ 'update', 'id' => $model->name ]);
             },
             'format' => 'html',
         ],
-        'description:text:' . Yii::t('pluto', 'Description'),
-        'ruleName:text:' . Yii::t('pluto', 'Condition'),
+        'description:text:' . 'Description',
+        'ruleName:text:' . 'Condition',
 //        'data',
 //        'createdAt:datetime',
 //        'updatedAt:datetime',
@@ -52,8 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
     'tableOptions' => ['class' => 'table table-sm table-bordered'],
     'summary' => '<div class="small text-info">{begin}-{end}/{totalCount}</div>',
-    'emptyText' => Yii::t('pluto', 'none'),
+    'emptyText' => 'none',
     'emptyTextOptions' => [ 'class' => 'small text-info'],
 ]); ?>
 
-<p><?= Html::a(Yii::t('pluto', 'New Permission'), ['create'], $viewOptions['button']) ?></p>
+<p><?= Html::a('New Permission', ['create'], $viewOptions['button']) ?></p>

@@ -33,7 +33,7 @@ trait Captcha
         }
         else if (in_array('reCaptcha', $this->flags))   {
             $r[] = ['reCaptcha', \himiklab\yii2\recaptcha\ReCaptchaValidator2::class,
-                'uncheckedMessage' => Yii::t('pluto', 'Please confirm that you are not a bot.')];
+                'uncheckedMessage' => 'Please confirm that you are not a bot.'];
         }
 
         return $r;

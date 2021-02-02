@@ -67,7 +67,12 @@ class Module extends YiiModule implements BootstrapInterface
      */
     public $passwordFlags = [
         'all' => 'reveal',
-//        'delete' => ['double', 'captcha']
+        'signup' => 'double',
+        'forgot' => ['double', 'captcha'],
+        'recover' => ['double', 'captcha'],
+        'resend' => ['double', 'captcha'],
+        'pw_change' => ['double', 'captcha'],
+        'delete' => 'double'
     ];
 
     /**
@@ -231,10 +236,7 @@ class Module extends YiiModule implements BootstrapInterface
                 $elmnts[] = $controller->id;
                 $elmnts[] = $controller->action->id;
 
-                $message = Yii::t('pluto','Sorry {username}, you\'re not allowed to visit <strong>{route}</strong> on this site.', [
-                    'username' => $identity->name ?? '',
-                    'route' => implode('/', $elmnts)
-                ]);
+                $message = 'Sorry '.$identity->firstname.' '.$identity->lastname.', you\'re not allowed to visit <strong>'.implode('/', $elmnts).'</strong> on this site.';
             }
             Yii::$app->session->setFlash($messageKey, $message);
             $r = $controller->goBack();

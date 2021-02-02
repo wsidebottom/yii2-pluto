@@ -32,27 +32,27 @@ $gridOptions = [
     ],
     'tableOptions' => ['class' => 'table table-sm table-bordered'],
     'summary' => '<div class="small text-info">{begin}-{end}/{totalCount}</div>',
-    'emptyText' => Yii::t('pluto', 'none'),
-    'emptyTextOptions' => [ 'class' => 'small text-info'],
+    'emptyText' => 'none',
+    'emptyTextOptions' => ['class' => 'small text-info'],
 ];
 
-$this->title = Yii::t('pluto', 'Conditions');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('pluto', 'Roles'), 'url' => ['role/index']];
+$this->title = 'Conditions';
+$this->params['breadcrumbs'][] = ['label' => 'Roles', 'url' => ['role/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1><?= $this->title ?></h1>
+<h1><?=$this->title?></h1>
 
-<?= GridView::widget(array_merge($gridOptions, [
+<?=GridView::widget(array_merge($gridOptions, [
     'dataProvider' => $regData,
     'columns' => [
         [
             'class' => 'yii\grid\SerialColumn',
-            'contentOptions' => [ 'class' => 'text-info' ]
+            'contentOptions' => ['class' => 'text-info'],
         ],
         'name',
         [
-            'label' => Yii::t('pluto', 'Class'),
-            'content' => function($model, $key, $index, $widget)    {
+            'label' => 'Class',
+            'content' => function ($model, $key, $index, $widget) {
                 return get_class($model);
             },
 
@@ -62,37 +62,37 @@ $this->params['breadcrumbs'][] = $this->title;
 
         [
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{delete}'
+            'template' => '{delete}',
         ],
     ],
-])); ?>
+]));?>
 
 <?php if ($unregData->totalCount > 0): ?>
 
 <fieldset class="mt-5">
-    <legend><?= Yii::t('pluto', 'Unregistered Conditions') ?></legend>
+    <legend><?='Unregistered Conditions'?></legend>
 
-    <?= GridView::widget(array_merge($gridOptions, [
-        'dataProvider' => $unregData,
-        'columns' => [
-            [
-                'class' => 'yii\grid\SerialColumn',
-                'contentOptions' => [ 'class' => 'text-info' ]
-            ],
-            'name',
-            [
-                'label' => Yii::t('pluto', 'Classname'),
-                'content' => function($model, $key, $index, $widget)    {
-                    return get_class($model);
-                },
-
-            ],
+    <?=GridView::widget(array_merge($gridOptions, [
+    'dataProvider' => $unregData,
+    'columns' => [
+        [
+            'class' => 'yii\grid\SerialColumn',
+            'contentOptions' => ['class' => 'text-info'],
         ],
-    ])); ?>
+        'name',
+        [
+            'label' => 'Classname',
+            'content' => function ($model, $key, $index, $widget) {
+                return get_class($model);
+            },
+
+        ],
+    ],
+]));?>
 
     <div class="form-group">
-        <?= Html::a(Yii::t('pluto', 'Register'), ['index'], $buttonOptions) ?>
+        <?=Html::a('Register', ['index'], $buttonOptions)?>
     </div>
 </fieldset>
 
-<?php endif; ?>
+<?php endif;?>

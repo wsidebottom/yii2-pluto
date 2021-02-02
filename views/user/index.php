@@ -24,7 +24,7 @@ use yii\widgets\Pjax;
 $context = $this->context;
 $viewOptions = $context->module->viewOptions;
 
-$this->title = Yii::t('pluto', 'Users');
+$this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerCss('
@@ -45,18 +45,17 @@ $this->registerCss('
         ['class' => 'yii\grid\SerialColumn'],
 
         [
-            'attribute' => 'name',
+            'attribute' => 'username',
             'content' => function($model, $key, $index, $widget)    {
-                return Yii::$app->user->can('updateUser', $model) ?
-                    Html::a($model->name, [ 'update', 'id' => $model->id ]) : $model->name;
+                return Yii::$app->user->can('updateUser', $model) ? Html::a($model->username, [ 'update', 'id' => $model->id ]) : $model->username;
             },
             'format' => 'html',
         ],
         'email:email',
         'statusText',
         'singleRole',
-//            'created_at',
-//            'updated_at',
+        'created_at',
+        'updated_at',
         [
             'attribute' => 'lastlogin_at',
             'headerOptions' => [ 'class' => 'sort-ordinal' ]
@@ -87,7 +86,7 @@ $this->registerCss('
     ],
     'tableOptions' => [ 'class' => 'table table-sm table-bordered' ],
     'summary' => '<div class="small text-info">{begin}-{end}/{totalCount}</div>',
-    'emptyText' => Yii::t('pluto', 'none'),
+    'emptyText' => 'none',
     'emptyTextOptions' => [ 'class' => 'small text-info'],
 ]); ?>
 
@@ -97,7 +96,7 @@ $this->registerCss('
     <p><strong>Default Roles: </strong><?= implode(', ', $defaultRoles) ?></p>
 <?php endif; ?>
 
-<p><?= Html::a(Yii::t('pluto', 'New User'), ['create'], $viewOptions['button']) ?>
+<p><?= Html::a('New User', ['create'], $viewOptions['button']) ?>
 <?php if (Yii::$app->user->can('manageRoles')): ?>
-    <?= Html::a(Yii::t('pluto', 'Roles'), ['role/index'], $viewOptions['link']) ?>
+    <?= Html::a('Roles', ['role/index'], $viewOptions['link']) ?>
 <?php endif; ?></p>
