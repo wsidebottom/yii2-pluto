@@ -8,11 +8,10 @@
  * Sjaak Priester, Amsterdam
  * MIT License
  * https://github.com/wsidebottom/yii2-pluto
- * https://wsidebottomriester.nl
  */
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\BaseDataProvider */

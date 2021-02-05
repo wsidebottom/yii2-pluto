@@ -8,7 +8,6 @@
  * Sjaak Priester, Amsterdam
  * MIT License
  * https://github.com/wsidebottom/yii2-pluto
- * https://wsidebottomriester.nl
  */
 
 namespace wsidebottom\pluto\controllers;

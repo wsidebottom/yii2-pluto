@@ -8,12 +8,11 @@
  * Sjaak Priester, Amsterdam
  * MIT License
  * https://github.com/wsidebottom/yii2-pluto
- * https://wsidebottomriester.nl
  */
 
+use kartik\grid\GridView;
 use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel wsidebottom\pluto\models\UserSearch */
@@ -34,20 +33,30 @@ $this->registerCss('
     height: 2em;
 }');
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
 
-<?php Pjax::begin(); ?>
+<p><?=Html::a('New User', ['create'], $viewOptions['button'])?>
+<?php if (Yii::$app->user->can('manageRoles')): ?>
+    <?=Html::a('Roles', ['role/index'], $viewOptions['link'])?>
+<?php endif;?></p>
 
-<?= GridView::widget([
+<?=GridView::widget([
+    'id' => 'users-grid',
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
+    'headerRowOptions' => ['class' => 'kartik-sheet-style'],
+    'filterRowOptions' => ['class' => 'kartik-sheet-style'],
+    'pjax' => true,
+    'toolbar' => [
+        ['content' => Html::a('<i class="fas fa-redo"></i>', ['farm-reset'], ['class' => 'btn btn-outline-secondary', 'title'=> 'Reset Grid', 'data-pjax' => 1])],
+        '{export}',
+        '{toggleData}'
+    ],
     'columns' => [
-        ['class' => 'yii\grid\SerialColumn'],
-
+        //['class' => 'kartik\grid\SerialColumn'],
         [
             'attribute' => 'username',
-            'content' => function($model, $key, $index, $widget)    {
-                return Yii::$app->user->can('updateUser', $model) ? Html::a($model->username, [ 'update', 'id' => $model->id ]) : $model->username;
+            'content' => function ($model, $key, $index, $widget) {
+                return Yii::$app->user->can('updateUser', $model) ? Html::a($model->username, ['update', 'id' => $model->id]) : $model->username;
             },
             'format' => 'html',
         ],
@@ -58,25 +67,23 @@ $this->registerCss('
         'updated_at',
         [
             'attribute' => 'lastlogin_at',
-            'headerOptions' => [ 'class' => 'sort-ordinal' ]
+            'headerOptions' => ['class' => 'sort-ordinal'],
         ],
         [
             'attribute' => 'login_count',
-            'headerOptions' => [ 'class' => 'sort-numerical' ]
+            'headerOptions' => ['class' => 'sort-numerical'],
         ],
-
         [
-            'class' => 'yii\grid\ActionColumn',
-            'template' => '{update} {delete}',
+            'class' => 'kartik\grid\ActionColumn',
+            'template' => '{update}', // {delete}',
             'visibleButtons' => [
-                'delete' => function ($model, $key, $index) {
-                        return Yii::$app->user->can('updateUser', $model) && Yii::$app->user->id != $model->id;
-                                                                        // user can't delete herself
-                },
+                //'delete' => function ($model, $key, $index) {
+                //    return Yii::$app->user->can('updateUser', $model) && Yii::$app->user->id != $model->id; // user can't delete themself
+                //},
                 'update' => function ($model, $key, $index) {
                     return Yii::$app->user->can('updateUser', $model);
                 },
-            ]
+            ],
         ],
     ],
     'formatter' => [
@@ -84,19 +91,28 @@ $this->registerCss('
         'datetimeFormat' => 'short', // 'dd-MM-yyyy HH:mm:ss'
         'nullDisplay' => '',
     ],
-    'tableOptions' => [ 'class' => 'table table-sm table-bordered' ],
+    'tableOptions' => ['class' => 'table table-sm table-bordered'],
     'summary' => '<div class="small text-info">{begin}-{end}/{totalCount}</div>',
     'emptyText' => 'none',
-    'emptyTextOptions' => [ 'class' => 'small text-info'],
-]); ?>
+    'emptyTextOptions' => ['class' => 'small text-info'],
+    'toggleDataContainer' => ['class' => 'btn-group mr-2'],
+    'export' => ['fontAwesome' => true],
+    'bordered' => true,
+    'striped' => true,
+    'condensed' => true,
+    'responsive' => true,
+    'hover' => true,
+    'showPageSummary' => false,
+    'panel' => [
+        'type' => GridView::TYPE_PRIMARY,
+        'heading' => '<span class="fas fa-book"></span>  ' . Html::encode($this->title),
+    ],
+    'persistResize' => false,
+    'toggleDataOptions' => ['minCount' => 10],
+    'itemLabelSingle' => 'user',
+    'itemLabelPlural' => 'users'
+]);?>
 
-<?php Pjax::end(); ?>
-
-<?php if (! empty($defaultRoles)): ?>
-    <p><strong>Default Roles: </strong><?= implode(', ', $defaultRoles) ?></p>
-<?php endif; ?>
-
-<p><?= Html::a('New User', ['create'], $viewOptions['button']) ?>
-<?php if (Yii::$app->user->can('manageRoles')): ?>
-    <?= Html::a('Roles', ['role/index'], $viewOptions['link']) ?>
-<?php endif; ?></p>
+<?php if (!empty($defaultRoles)): ?>
+    <p><strong>Default Roles: </strong><?=implode(', ', $defaultRoles)?></p>
+<?php endif;?>

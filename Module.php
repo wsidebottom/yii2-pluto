@@ -8,7 +8,6 @@
  * Sjaak Priester, Amsterdam
  * MIT License
  * https://github.com/wsidebottom/yii2-pluto
- * https://wsidebottomriester.nl
  */
 
 namespace wsidebottom\pluto;
@@ -296,7 +295,7 @@ class Module extends YiiModule implements BootstrapInterface
                 });
             }
 
-            if (empty($this->formClass)) $this->formClass = $this->bootstrapNamespace() . '\ActiveForm';
+            if (empty($this->formClass)) $this->formClass = 'yii\bootstrap4\ActiveForm';
 
         } else {
             /* @var $app ConsoleApplication */
@@ -311,18 +310,5 @@ class Module extends YiiModule implements BootstrapInterface
                 'pluto' => 'wsidebottom\pluto\commands\PlutoController'
             ]);
         }
-    }
-
-    /**
-     * @return string the namespace of the Bootstrap extension ('yii\bootstrap' or 'yii\bootstrap4')
-     * @throws InvalidConfigException
-     */
-    public function bootstrapNamespace()
-    {
-        foreach ([ '4', '3', ''] as $v)  {
-            $ns = 'yii/bootstrap' . $v;
-            if (strrpos(Yii::getAlias( '@' . $ns, false),'/src') !== false) return str_replace('/', '\\', $ns);
-        }
-        throw new InvalidConfigException( 'No Bootstrap extension found');
     }
 }

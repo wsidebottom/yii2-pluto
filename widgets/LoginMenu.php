@@ -8,7 +8,6 @@
  * Sjaak Priester, Amsterdam
  * MIT License
  * https://github.com/wsidebottom/yii2-pluto
- * https://wsidebottomriester.nl
  */
 
 namespace wsidebottom\pluto\widgets;
@@ -100,7 +99,7 @@ class LoginMenu extends Widget
             'linkOptions' => ['data-method' => 'post']
         ];
 
-        $ddClass = $mod->bootstrapNamespace() . '\Dropdown';
+        $ddClass = 'yii\bootstrap4\Dropdown';
         $dropdown = $ddClass::widget([
             'items' => $items,
             'options' => $this->options
